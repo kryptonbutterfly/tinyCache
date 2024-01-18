@@ -1,9 +1,9 @@
-module de.tinycodecrank.Cache
+module kryptonbutterfly.Cache
 {
-	exports de.tinycodecrank.cache;
-	exports de.tinycodecrank.cache.concurrent;
+	exports kryptonbutterfly.cache;
+	exports kryptonbutterfly.cache.concurrent;
 	
-	requires transitive de.tinycodecrank.Collections;
-	requires de.tinycodecrank.Monads;
-	requires transitive de.tinycodecrank.bounded;
+	requires transitive kryptonbutterfly.Collections;
+	requires kryptonbutterfly.Monads;
+	requires transitive kryptonbutterfly.bounded;
 }

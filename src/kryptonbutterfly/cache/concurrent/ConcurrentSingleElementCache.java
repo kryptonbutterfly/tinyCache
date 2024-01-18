@@ -1,10 +1,10 @@
-package de.tinycodecrank.cache.concurrent;
+package kryptonbutterfly.cache.concurrent;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import de.tinycodecrank.cache.CacheKey;
-import de.tinycodecrank.cache.ICache;
+import kryptonbutterfly.cache.CacheKey;
+import kryptonbutterfly.cache.ICache;
 
 public class ConcurrentSingleElementCache<Key, Value> implements ICache<Key, Value>
 {

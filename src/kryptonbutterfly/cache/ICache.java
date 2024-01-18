@@ -1,4 +1,4 @@
-package de.tinycodecrank.cache;
+package kryptonbutterfly.cache;
 
 public interface ICache<Key, Value> extends AutoCloseable
 {

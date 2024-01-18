@@ -1,12 +1,12 @@
-package de.tinycodecrank.cache.concurrent;
+package kryptonbutterfly.cache.concurrent;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import de.tinycodecrank.cache.CacheKey;
-import de.tinycodecrank.cache.ICache;
-import de.tinycodecrank.collections.CyclicBuffer;
+import kryptonbutterfly.cache.CacheKey;
+import kryptonbutterfly.cache.ICache;
+import kryptonbutterfly.collections.CyclicBuffer;
 
 public class ConcurrentLRUCache<Key, Value> implements ICache<Key, Value>
 {
@@ -25,8 +25,7 @@ public class ConcurrentLRUCache<Key, Value> implements ICache<Key, Value>
 	public ConcurrentLRUCache(Function<Key, Value> function, int capacity, Consumer<Key> evictionListener)
 	{
 		this.function		= function;
-		this.evictionBuffer	= new CyclicBuffer<>(capacity, key ->
-							{
+		this.evictionBuffer	= new CyclicBuffer<>(capacity, key -> {
 								cache.remove(key);
 								evictionListener.accept(key.key);
 							});

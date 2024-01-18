@@ -1,22 +1,17 @@
-package de.tinycodecrank.cache;
+package kryptonbutterfly.cache.concurrent;
 
 import java.util.HashMap;
 import java.util.function.Function;
 
-/**
- * This cache has no size limit and expands without limitations.
- * 
- * @author tinycodecrank
- *
- * @param <Key>
- * @param <Value>
- */
-public final class ExpandingCache<Key, Value> implements ICache<Key, Value>, AutoCloseable
+import kryptonbutterfly.cache.CacheKey;
+import kryptonbutterfly.cache.ICache;
+
+public class ConcurrentExpandingCache<Key, Value> implements ICache<Key, Value>, AutoCloseable
 {
 	private final HashMap<CacheKey<Key>, Value>	cache	= new HashMap<>();
 	private final Function<Key, Value>			function;
 	
-	public ExpandingCache(Function<Key, Value> function)
+	public ConcurrentExpandingCache(Function<Key, Value> function)
 	{
 		this.function = function;
 	}
@@ -25,15 +20,18 @@ public final class ExpandingCache<Key, Value> implements ICache<Key, Value>, Aut
 	public Value get(Key key)
 	{
 		CacheKey<Key> cKey = new CacheKey<>(key);
-		if (contains(cKey))
+		synchronized (cache)
 		{
-			return peak(cKey);
-		}
-		else
-		{
-			Value value = this.function.apply(key);
-			this.cache.put(cKey, value);
-			return value;
+			if (contains(cKey))
+			{
+				return peak(cKey);
+			}
+			else
+			{
+				Value value = this.function.apply(key);
+				this.cache.put(cKey, value);
+				return value;
+			}
 		}
 	}
 	
@@ -45,7 +43,10 @@ public final class ExpandingCache<Key, Value> implements ICache<Key, Value>, Aut
 	
 	private Value peak(CacheKey<Key> key)
 	{
-		return this.cache.get(key);
+		synchronized (cache)
+		{
+			return this.cache.get(key);
+		}
 	}
 	
 	@Override
@@ -56,13 +57,19 @@ public final class ExpandingCache<Key, Value> implements ICache<Key, Value>, Aut
 	
 	private boolean contains(CacheKey<Key> key)
 	{
-		return this.cache.containsKey(key);
+		synchronized (cache)
+		{
+			return this.cache.containsKey(key);
+		}
 	}
 	
 	@Override
 	public void clear()
 	{
-		cache.clear();
+		synchronized (cache)
+		{
+			cache.clear();
+		}
 	}
 	
 	@Override

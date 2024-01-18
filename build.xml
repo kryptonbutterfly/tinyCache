@@ -4,7 +4,7 @@
 	<target name="create_jar">
 		<jar destfile="build/Cache.jar">
 			<manifest>
-				<attribute name="Created-By" value="tinycodecrank"/>
+				<attribute name="Created-By" value="kryptonbutterfly"/>
 				<attribute name="Class-Path" value="."/>
 			</manifest>
 			<fileSet dir="target/classes"/>

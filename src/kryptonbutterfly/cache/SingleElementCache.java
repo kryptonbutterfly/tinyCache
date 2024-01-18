@@ -1,4 +1,4 @@
-package de.tinycodecrank.cache;
+package kryptonbutterfly.cache;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -7,7 +7,7 @@ import java.util.function.Function;
 /**
  * This cache has a capacity of 1.
  * 
- * @author tinycodecrank
+ * @author kryptonbutterfly
  *
  * @param <Key>
  * @param <Value>
@@ -22,8 +22,7 @@ public class SingleElementCache<Key, Value> implements ICache<Key, Value>
 	
 	public SingleElementCache(Function<Key, Value> function)
 	{
-		this(function, _key ->
-		{});
+		this(function, _key -> {});
 	}
 	
 	public SingleElementCache(Function<Key, Value> function, Consumer<Key> evictionListener)

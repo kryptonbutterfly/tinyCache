@@ -1,17 +1,17 @@
-package de.tinycodecrank.cache;
+package kryptonbutterfly.cache;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import de.tinycodecrank.bounded.presets._int.int_not_negative;
-import de.tinycodecrank.collections.CyclicBuffer;
+import kryptonbutterfly.bounded.presets._int.int_not_negative;
+import kryptonbutterfly.collections.CyclicBuffer;
 
 /**
  * This cache has a fixed capacity and evicts the longest unused cache entry if
  * the capacity would be exceeded.
  * 
- * @author tinycodecrank
+ * @author kryptonbutterfly
  *
  * @param <Key>
  * @param <Value>
@@ -39,8 +39,7 @@ public class LRUCache<Key, Value> implements ICache<Key, Value>
 	public LRUCache(Function<Key, Value> function, int capacity, Consumer<Key> evictionListener)
 	{
 		this.function		= function;
-		this.evictionBuffer	= new CyclicBuffer<>(capacity, key ->
-							{
+		this.evictionBuffer	= new CyclicBuffer<>(capacity, key -> {
 								cache.remove(key);
 								evictionListener.accept(key.key);
 							});
@@ -49,8 +48,7 @@ public class LRUCache<Key, Value> implements ICache<Key, Value>
 	public LRUCache(Function<Key, Value> function, int_not_negative capacity, Consumer<Key> evicionListener)
 	{
 		this.function		= function;
-		this.evictionBuffer	= new CyclicBuffer<>(capacity, key ->
-							{
+		this.evictionBuffer	= new CyclicBuffer<>(capacity, key -> {
 								cache.remove(key);
 								evicionListener.accept(key.key);
 							});

@@ -1,10 +1,10 @@
-package de.tinycodecrank.cache;
+package kryptonbutterfly.cache;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * @author tinycodecrank
+ * @author kryptonbutterfly
  *
  * @param <Key>
  *            The type of the key to be used in the associated cache. This class
@@ -43,15 +43,15 @@ public final class CacheKey<Key>
 			String name = keyClass.getComponentType().getName();
 			return switch (name)
 			{
-				case "boolean" -> Arrays.hashCode((boolean[]) key);
-				case "byte" -> Arrays.hashCode((byte[]) key);
-				case "char" -> Arrays.hashCode((char[]) key);
-				case "double" -> Arrays.hashCode((double[]) key);
-				case "float" -> Arrays.hashCode((float[]) key);
-				case "int" -> Arrays.hashCode((int[]) key);
-				case "long" -> Arrays.hashCode((long[]) key);
-				case "short" -> Arrays.hashCode((short[]) key);
-				default -> Arrays.deepHashCode((Object[]) key);
+			case "boolean" -> Arrays.hashCode((boolean[]) key);
+			case "byte" -> Arrays.hashCode((byte[]) key);
+			case "char" -> Arrays.hashCode((char[]) key);
+			case "double" -> Arrays.hashCode((double[]) key);
+			case "float" -> Arrays.hashCode((float[]) key);
+			case "int" -> Arrays.hashCode((int[]) key);
+			case "long" -> Arrays.hashCode((long[]) key);
+			case "short" -> Arrays.hashCode((short[]) key);
+			default -> Arrays.deepHashCode((Object[]) key);
 			};
 		}
 		else
