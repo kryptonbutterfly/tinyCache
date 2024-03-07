@@ -1,4 +1,6 @@
-# tinyCache
+<img align="left" width="82" src="https://raw.githubusercontent.com/kryptonbutterfly/tinyCache/master/icon.svg">
+
+# tinyCache [![Maven Package](https://github.com/kryptonbutterfly/tinyCache/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/kryptonbutterfly/tinyCache/actions/workflows/maven-publish.yml)
 A module containing several cache implementations.
 
 Class                        | Description
